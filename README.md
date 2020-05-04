@@ -1,6 +1,9 @@
 # Docker container for Cytoverse packages
 
-This Docker image is built off of the `devel` branch of [Bioconductor's base Docker image](https://hub.docker.com/r/bioconductor/bioconductor_docker) with the development branches of following packages installed (along with their dependencies).
+![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/jpwagner/cytoverse)
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/jpwagner/cytoverse)
+
+This Docker image is built off of the `devel` branch of [Bioconductor's base Docker image](https://hub.docker.com/r/bioconductor/bioconductor_docker) with the development branches of the following packages installed (along with their dependencies).
 
 * RProtoBufLib: [GitHub](https://github.com/RGLab/RProtoBufLib), [Bioconductor](https://www.bioconductor.org/packages/devel/bioc/html/RProtoBufLib.html)
 * cytolib: [GitHub](https://github.com/RGLab/cytolib), [Bioconductor](https://www.bioconductor.org/packages/devel/bioc/html/cytolib.html)
