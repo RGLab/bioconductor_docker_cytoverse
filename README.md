@@ -1,7 +1,7 @@
 # Docker container for Cytoverse packages
 
-![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/jpwagner/cytoverse)
-![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/jpwagner/cytoverse)
+![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/rglab/cytoverse)
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/rglab/cytoverse)
 
 This Docker image is built off of the `devel` branch of [Bioconductor's base Docker image](https://hub.docker.com/r/bioconductor/bioconductor_docker) with the development branches of the following packages installed (along with their dependencies).
 
@@ -33,7 +33,7 @@ As this Docker image is built directly on the Bioconductor docker image, it can 
 you will default have access to the additional packages listed above. Please see see the documentation on [Bioconductor Docker](https://hub.docker.com/r/bioconductor/bioconductor_docker) regarding usage. To get the Cytoverse docker image to run in a container locally, simply execute the following command:
 
 ```
-docker pull jpwagner/cytoverse:devel
+docker pull rglab/cytoverse:devel
 ```
 
 You can then run the container and make an RStudio session available in the same way as for the base Bioconductor image:
@@ -42,7 +42,7 @@ You can then run the container and make an RStudio session available in the same
  docker run \
      -e PASSWORD=bioc \
      -p 8787:8787 \
-     jpwagner/cytoverse:devel
+     rglab/cytoverse:devel
 ```
 
 This will make an RStudio session available using a web browser at `https://localhost:8787`. The user will be `rstudio` and the password will be `bioc`.
