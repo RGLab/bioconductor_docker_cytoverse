@@ -4,9 +4,9 @@ FROM bioconductor/bioconductor_docker:devel
 ARG CYTOVERSE_DOCKER_VERSION=3.11.0.9000
 
 # Update label for submission to bioconductor
-LABEL name="jpwagner/bioconductor_docker_cytoverse" \
+LABEL name="rglab/bioconductor_docker_cytoverse" \
       version="devel" \
-      url="https://github.com/jacobpwagner/bioconductor_docker_cytoverse" \
+      url="https://github.com/RGlab/bioconductor_docker_cytoverse" \
       maintainer="jpwagner@fredhutch.org" \
       description="Bioconductor docker image with bundled RGLab cytometry packages" \
       license="Artistic-2.0"
