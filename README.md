@@ -3,7 +3,7 @@
 ![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/rglab/cytoverse)
 ![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/rglab/cytoverse)
 
-This Docker image is built off of the `devel` branch of [Bioconductor's base Docker image](https://hub.docker.com/r/bioconductor/bioconductor_docker) with the development branches of the following packages installed (along with their dependencies).
+These Docker images are built on the corresponding `devel` or `RELEASE_X_Y` branches of [Bioconductor's base Docker image](https://hub.docker.com/r/bioconductor/bioconductor_docker) with the the following additional packages installed (along with their dependencies).
 
 * RProtoBufLib: [GitHub](https://github.com/RGLab/RProtoBufLib), [Bioconductor](https://www.bioconductor.org/packages/devel/bioc/html/RProtoBufLib.html)
 * cytolib: [GitHub](https://github.com/RGLab/cytolib), [Bioconductor](https://www.bioconductor.org/packages/devel/bioc/html/cytolib.html)
@@ -18,7 +18,11 @@ This Docker image is built off of the `devel` branch of [Bioconductor's base Doc
 * openCyto: [GitHub](https://github.com/RGLab/openCyto), [Bioconductor](https://www.bioconductor.org/packages/devel/bioc/html/openCyto.html)
 * CytoML: [GitHub](https://github.com/RGLab/CytoML), [Bioconductor](https://www.bioconductor.org/packages/devel/bioc/html/CytoML.html)
 
-This is provided as an option to make it easier for users of all platforms to use the packages for analysis of cytometry data without needing to worry about dependencies or platform-dependent aspects of installation. It will also be continuously updated to the newest versions of the packages, allowing users to stay up to date with a single `docker pull`.
+This is provided as an option to make it easier for users of all platforms to use the packages for analysis of cytometry data without needing to worry about dependencies or platform-dependent aspects of installation. It will also be continuously updated to the newest versions of the packages, allowing users to stay up to date with a single `docker pull` command.
+
+`rglab/cytoverse:devel` will be automatically built off of `biconductor/bioconductor_docker:devel`, using the most up-to-date development branches of the Cytoverse packages.
+
+`rglab/cytoverse:RELEASE_X_Y` (where `X` and `Y` are major and minor Bioconductor release version numbers) are built on the corresponding `bioconductor/bioconductor_docker:RELEASE_X_Y` using the corresponding release branches of the Cytoverse packages.
 
 ## Usage
 
@@ -29,8 +33,8 @@ Please see Docker's documentation for general notes on using containers and gett
 
 ## Getting Started
 
-As this Docker image is built directly on the Bioconductor docker image, it can be used in the same way, with the only difference being
-you will default have access to the additional packages listed above. Please see see the documentation on [Bioconductor Docker](https://hub.docker.com/r/bioconductor/bioconductor_docker) regarding usage. To get the Cytoverse docker image to run in a container locally, simply execute the following command:
+As these Docker images are built directly on the Bioconductor docker image, they can be used in the same way, with the only difference being that
+you will already have access to the additional packages listed above. Please see see the documentation on [Bioconductor Docker](https://hub.docker.com/r/bioconductor/bioconductor_docker) regarding usage. To obtain the Cytoverse docker images to run in a container locally, simply execute the following command (in this case using the `devel` branch as an example):
 
 ```
 docker pull rglab/cytoverse:devel
