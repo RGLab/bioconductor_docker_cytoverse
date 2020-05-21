@@ -1,3 +1,5 @@
 #!/bin/bash
 
-docker build -t rglab/cytoverse:devel --build-arg GITHUB_PAT=$GITHUB_PAT .
+echo $GITHUB_PAT > github_pat.txt
+DOCKER_BUILDKIT=1 docker build -t rglab/cytoverse:devel --secret id=github_pat,src=github_pat.txt .
+rm github_pat.txt
