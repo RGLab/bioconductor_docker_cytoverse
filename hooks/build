@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker build -t rglab/cytoverse:devel --build-arg GITHUB_PAT=$GITHUB_PAT .

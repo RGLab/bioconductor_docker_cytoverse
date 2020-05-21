@@ -2,10 +2,11 @@ ARG CYTOVERSE_DOCKER_VERSION=3.11.0.9001
 
 # Build gs-to-flowjo binary
 FROM bioconductor/bioconductor_docker:devel as builder
+ARG GITHUB_PAT
 RUN apt-get update \
-    && apt-get install -y g++ libboost-all-dev cmake openssh-client
-RUN git clone git@github.com:RGLab/cytolib.git --depth=1 --branch=master --single-branch \
-    && git clone git@github.com:FredHutch/cytolib-ml.git --depth=1 --branch=master --single-branch
+    && apt-get install -y g++ libboost-all-dev cmake 
+RUN git clone https://github.com:RGLab/cytolib.git --depth=1 --branch=master --single-branch \
+    && git clone https://${GITHUB_PAT}@github.com:FredHutch/cytolib-ml.git --depth=1 --branch=master --single-branch
 RUN cd cytolib && cmake . && make install -j4 && cd ..
 WORKDIR cytolib-ml
 RUN mkdir build
@@ -30,18 +31,18 @@ WORKDIR cytoverse_repos
 
 RUN R -e 'BiocManager::install(version = "devel", ask = FALSE)'
 
-RUN git clone git@github.com:RGLab/RProtoBufLib.git --depth=1 --branch=master --single-branch \
-    && git clone git@github.com:RGLab/cytolib.git --depth=1 --branch=master --single-branch \
-    && git clone git@github.com:RGLab/flowCore.git --depth=1 --branch=master --single-branch \
-    && git clone git@github.com:RGLab/flowViz.git --depth=1 --branch=master --single-branch \
-    && git clone git@github.com:RGLab/ncdfFlow.git --depth=1 --branch=master --single-branch \
-    && git clone git@github.com:RGLab/flowWorkspace.git --depth=1 --branch=master --single-branch \
-    && git clone git@github.com:RGLab/flowWorkspaceData.git --depth=1 --branch=master --single-branch \
-    && git clone git@github.com:RGLab/flowClust.git --depth=1 --branch=master --single-branch \
-    && git clone git@github.com:RGLab/flowStats.git --depth=1 --branch=master --single-branch \
-    && git clone git@github.com:RGLab/ggcyto.git --depth=1 --branch=master --single-branch \
-    && git clone git@github.com:RGLab/openCyto.git --depth=1 --branch=master --single-branch \
-    && git clone git@github.com:RGLab/CytoML.git --depth=1 --branch=master --single-branch
+RUN git clone https://github.com:RGLab/RProtoBufLib.git --depth=1 --branch=master --single-branch \
+    && git clone https://github.com:RGLab/cytolib.git --depth=1 --branch=master --single-branch \
+    && git clone https://github.com:RGLab/flowCore.git --depth=1 --branch=master --single-branch \
+    && git clone https://github.com:RGLab/flowViz.git --depth=1 --branch=master --single-branch \
+    && git clone https://github.com:RGLab/ncdfFlow.git --depth=1 --branch=master --single-branch \
+    && git clone https://github.com:RGLab/flowWorkspace.git --depth=1 --branch=master --single-branch \
+    && git clone https://github.com:RGLab/flowWorkspaceData.git --depth=1 --branch=master --single-branch \
+    && git clone https://github.com:RGLab/flowClust.git --depth=1 --branch=master --single-branch \
+    && git clone https://github.com:RGLab/flowStats.git --depth=1 --branch=master --single-branch \
+    && git clone https://github.com:RGLab/ggcyto.git --depth=1 --branch=master --single-branch \
+    && git clone https://github.com:RGLab/openCyto.git --depth=1 --branch=master --single-branch \
+    && git clone https://github.com:RGLab/CytoML.git --depth=1 --branch=master --single-branch
 
 # Then build all appropriate packages
 RUN R -e 'devtools::install_deps("RProtoBufLib", repos=BiocManager::repositories(version = "devel"), upgrade = "never")' \
