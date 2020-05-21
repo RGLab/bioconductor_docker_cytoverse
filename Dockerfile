@@ -4,7 +4,6 @@ ARG CYTOVERSE_DOCKER_VERSION=3.11.0.9001
 FROM bioconductor/bioconductor_docker:devel as builder
 RUN apt-get update \
     && apt-get install -y g++ libboost-all-dev cmake openssh-client
-RUN echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 RUN git clone git@github.com:RGLab/cytolib.git --depth=1 --branch=master --single-branch \
     && git clone git@github.com:FredHutch/cytolib-ml.git --depth=1 --branch=master --single-branch
 RUN cd cytolib && cmake . && make install -j4 && cd ..
