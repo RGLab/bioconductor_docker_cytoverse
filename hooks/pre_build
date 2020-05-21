@@ -1,3 +1,0 @@
-#!/bin/bash
-
-git clone https://${GITHUB_PAT}@github.com/FredHutch/cytolib-ml.git --depth=1 --branch=master --single-branch
