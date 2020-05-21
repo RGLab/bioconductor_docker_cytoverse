@@ -1,3 +1,5 @@
+ARG CYTOVERSE_DOCKER_VERSION=3.11.0.9001
+
 # Build gs-to-flowjo binary
 FROM bioconductor/bioconductor_docker:devel as builder
 RUN apt-get update \
@@ -15,8 +17,6 @@ FROM bioconductor/bioconductor_docker:devel
 
 # Pull over the gs-to-flowjo binary
 COPY --from=builder /usr/local/bin/gs-to-flowjo /usr/local/bin
-
-ARG CYTOVERSE_DOCKER_VERSION=3.11.0.9000
 
 # Update label for submission to bioconductor
 LABEL name="rglab/bioconductor_docker_cytoverse" \
