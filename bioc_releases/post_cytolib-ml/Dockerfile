@@ -9,7 +9,7 @@ ARG GITHUB_PAT
 RUN apt-get update \
     && apt-get install -y g++ libboost-all-dev cmake 
 RUN git clone https://git.bioconductor.org/packages/cytolib --depth=1 --branch=$BIOC_VERSION --single-branch  \
-    && git clone https://${GITHUB_PAT}@github.com/FredHutch/cytolib-ml.git --depth=1 --branch=$BIOC_VERSION --single-branch
+    && git clone https://${GITHUB_PAT}@github.com/RGLab/cytolib-ml.git --depth=1 --branch=$BIOC_VERSION --single-branch
 RUN cd cytolib && cmake . && make install -j4 && cd ..
 WORKDIR cytolib-ml
 RUN mkdir build
