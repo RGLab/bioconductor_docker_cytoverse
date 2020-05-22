@@ -1,4 +1,4 @@
-ARG CYTOVERSE_DOCKER_VERSION=3.11.0.9002
+ARG CYTOVERSE_DOCKER_VERSION=3.11.0.9003
 
 # Build gs-to-flowjo binary
 FROM bioconductor/bioconductor_docker:devel as builder
@@ -6,7 +6,7 @@ ARG GITHUB_PAT
 RUN apt-get update \
     && apt-get install -y g++ libboost-all-dev cmake 
 RUN git clone https://github.com/RGLab/cytolib.git --depth=1 --branch=master --single-branch \
-    && git clone https://${GITHUB_PAT}@github.com/FredHutch/cytolib-ml.git --depth=1 --branch=master --single-branch
+    && git clone https://${GITHUB_PAT}@github.com/RGLab/cytolib-ml.git --depth=1 --branch=master --single-branch
 RUN cd cytolib && cmake . && make install -j4 && cd ..
 WORKDIR cytolib-ml
 RUN mkdir build
