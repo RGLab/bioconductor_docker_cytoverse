@@ -1,4 +1,4 @@
-ARG CYTOVERSE_DOCKER_VERSION=3.11.0.9003
+ARG CYTOVERSE_DOCKER_VERSION=3.11.0.9004
 
 # Build gs-to-flowjo binary
 FROM bioconductor/bioconductor_docker:devel as builder
