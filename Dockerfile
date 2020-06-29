@@ -82,10 +82,10 @@ RUN R -e 'devtools::install_deps("RProtoBufLib", repos=BiocManager::repositories
     && R CMD INSTALL openCyto_* \
     && R -e 'devtools::install_deps("CytoML", repos=BiocManager::repositories(version = "devel"), upgrade = "never")' \
     && R CMD build CytoML --no-build-vignettes \
-    && R CMD INSTALL CytoML_*
+    && R CMD INSTALL CytoML_* \
     && R -e 'devtools::install_deps("colortable", repos=BiocManager::repositories(version = "devel"), upgrade = "never")' \
     && R CMD build colortable --no-build-vignettes \
-    && R CMD INSTALL colortable_*
+    && R CMD INSTALL colortable_* \
     && R -e 'devtools::install_deps("cytoqc", repos=BiocManager::repositories(version = "devel"), upgrade = "never")' \
     && R CMD build cytoqc --no-build-vignettes \
     && R CMD INSTALL cytoqc_*
