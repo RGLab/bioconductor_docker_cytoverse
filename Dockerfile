@@ -1,4 +1,4 @@
-ARG CYTOVERSE_DOCKER_VERSION=3.11.0.9006
+ARG CYTOVERSE_DOCKER_VERSION=3.11.0.9007
 
 # Build gs-to-flowjo binary
 FROM bioconductor/bioconductor_docker:devel as builder
@@ -42,7 +42,9 @@ RUN git clone https://github.com/RGLab/RProtoBufLib.git --depth=1 --branch=maste
     && git clone https://github.com/RGLab/flowStats.git --depth=1 --branch=master --single-branch \
     && git clone https://github.com/RGLab/ggcyto.git --depth=1 --branch=master --single-branch \
     && git clone https://github.com/RGLab/openCyto.git --depth=1 --branch=master --single-branch \
-    && git clone https://github.com/RGLab/CytoML.git --depth=1 --branch=master --single-branch
+    && git clone https://github.com/RGLab/CytoML.git --depth=1 --branch=master --single-branch \
+    && git clone https://github.com/thebioengineer/colortable.git --depth=1 --branch=master --single-branch \
+    && git clone https://github.com/RGLab/cytoqc.git --depth=1 --branch=master --single-branch
 
 # Then build all appropriate packages
 RUN R -e 'devtools::install_deps("RProtoBufLib", repos=BiocManager::repositories(version = "devel"), upgrade = "never")' \
@@ -81,5 +83,11 @@ RUN R -e 'devtools::install_deps("RProtoBufLib", repos=BiocManager::repositories
     && R -e 'devtools::install_deps("CytoML", repos=BiocManager::repositories(version = "devel"), upgrade = "never")' \
     && R CMD build CytoML --no-build-vignettes \
     && R CMD INSTALL CytoML_*
+    && R -e 'devtools::install_deps("colortable", repos=BiocManager::repositories(version = "devel"), upgrade = "never")' \
+    && R CMD build colortable --no-build-vignettes \
+    && R CMD INSTALL colortable_*
+    && R -e 'devtools::install_deps("cytoqc", repos=BiocManager::repositories(version = "devel"), upgrade = "never")' \
+    && R CMD build cytoqc --no-build-vignettes \
+    && R CMD INSTALL cytoqc_*
 
 RUN rm -rf /cytoverse_repos
